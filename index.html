@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <title>Shop Bán Tài Khoản Ninja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>MiduNso - Shop tài khoản Ninja</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
       box-sizing: border-box;
@@ -13,215 +13,202 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #050816;
-      color: #ffffff;
+      background: #050814;
+      color: #fff;
       line-height: 1.5;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    /* HEADER */
-    .header {
-      background: #000000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    .navbar {
+      background: #000;
       padding: 12px 24px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #262a3d;
       position: sticky;
       top: 0;
       z-index: 10;
     }
 
     .logo {
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 22px;
+      font-weight: bold;
       letter-spacing: 1px;
-      color: #f5b300;
+      color: #ffcc33;
     }
 
-    .nav {
-      display: flex;
-      gap: 18px;
+    .nav-links a {
+      margin-left: 16px;
       font-size: 14px;
-      opacity: 0.9;
+      opacity: 0.8;
     }
 
-    .nav a:hover {
-      color: #f5b300;
+    .nav-links a:hover {
+      opacity: 1;
     }
 
-    /* MAIN WRAPPER */
-    .wrapper {
+    .container {
       max-width: 1200px;
-      margin: 32px auto 64px;
+      margin: 24px auto 48px;
       padding: 0 16px;
     }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 24px 0 12px;
-    }
-
-    /* PRODUCT LAYOUT */
-    .product-page {
+    .product-wrapper {
       display: flex;
-      flex-wrap: wrap;
       gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
     }
 
-    .left-column,
-    .right-column {
-      background: #071427;
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .left-column {
-      flex: 2;
-      min-width: 320px;
-    }
-
-    .right-column {
-      flex: 1.5;
-      min-width: 280px;
-    }
-
-    /* GALLERY */
-    .gallery {
+    /* LEFT: IMAGE GALLERY */
+    .gallery-card {
+      background: #071125;
+      border-radius: 16px;
+      padding: 16px;
       display: flex;
-      gap: 16px;
+      gap: 12px;
+      flex: 1.3;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
     }
 
-    .thumbnails {
+    .gallery-thumbs {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      width: 96px;
+      width: 90px;
+      overflow-y: auto;
     }
 
-    .thumb {
-      border-radius: 8px;
-      overflow: hidden;
+    .gallery-thumbs img {
+      width: 100%;
+      border-radius: 10px;
       cursor: pointer;
+      opacity: 0.6;
       border: 2px solid transparent;
+      transition: all 0.2s;
     }
 
-    .thumb img {
-      display: block;
-      width: 100%;
+    .gallery-thumbs img.active,
+    .gallery-thumbs img:hover {
+      opacity: 1;
+      border-color: #ffcc33;
     }
 
-    .thumb.active {
-      border-color: #f5b300;
-    }
-
-    .main-image {
+    .gallery-main {
       flex: 1;
-      border-radius: 12px;
-      overflow: hidden;
       position: relative;
-      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .main-image img {
-      display: block;
+    .gallery-main img {
       width: 100%;
-      height: auto;
+      border-radius: 16px;
     }
 
-    .image-count {
+    .gallery-count {
       position: absolute;
-      right: 12px;
       bottom: 12px;
-      background: rgba(0, 0, 0, 0.8);
+      right: 12px;
+      background: rgba(0,0,0,0.7);
+      padding: 6px 10px;
       border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
+      font-size: 12px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .image-count span {
-      opacity: 0.8;
-    }
-
-    .gallery-footer {
-      margin-top: 16px;
+    /* RIGHT: INFO CARD */
+    .info-card {
+      background: #071125;
+      border-radius: 16px;
+      padding: 20px 20px 24px;
+      flex: 1;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      opacity: 0.8;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
     }
 
-    /* PRODUCT INFO RIGHT */
-    .product-name {
+    .product-title {
       font-size: 22px;
       font-weight: 700;
-      margin-bottom: 4px;
+      color: #ffcc33;
       text-transform: uppercase;
-      color: #f5b300;
     }
 
-    .product-code {
+    .product-id {
       font-size: 13px;
       opacity: 0.7;
-      margin-bottom: 16px;
+      margin-top: -4px;
     }
 
-    .info-block {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 16px;
-      margin-top: 8px;
-      font-size: 14px;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-
-    .info-row span:first-child {
+    .info-section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       opacity: 0.7;
+      border-bottom: 1px solid #262a3d;
+      padding-bottom: 6px;
+    }
+
+    .info-table {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      row-gap: 6px;
+      column-gap: 16px;
+      font-size: 14px;
+      margin-top: 6px;
+      max-height: 170px;
+      overflow-y: auto;
+    }
+
+    .info-label {
+      opacity: 0.7;
+    }
+
+    .info-value {
+      font-weight: 500;
     }
 
     .price-box {
-      margin: 18px 0;
-      background: #020715;
+      background: #050814;
       border-radius: 12px;
-      padding: 16px;
+      padding: 12px 16px;
       text-align: center;
+      margin-top: 4px;
     }
 
     .price-main {
       font-size: 20px;
       font-weight: 700;
-      color: #ff4ecf;
-      margin-bottom: 4px;
+      color: #ff4dd8;
     }
 
     .price-sub {
       font-size: 16px;
-      color: #ff79ff;
-      margin-bottom: 6px;
+      font-weight: 600;
+      color: #ff8ae6;
+      margin-top: 4px;
     }
 
     .price-note {
-      font-size: 13px;
+      font-size: 12px;
+      margin-top: 4px;
       opacity: 0.8;
     }
 
-    .buttons {
+    .btn-row {
       display: flex;
       gap: 12px;
-      margin-top: 16px;
+      margin-top: 8px;
     }
 
     .btn {
@@ -234,256 +221,300 @@
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      transition: transform 0.1s, box-shadow 0.1s, opacity 0.1s;
     }
 
     .btn-primary {
-      background: #f5b300;
+      background: #ffcc33;
       color: #000;
     }
 
     .btn-secondary {
-      background: transparent;
-      border: 1px solid #f5b300;
-      color: #f5b300;
+      background: #2b3348;
+      color: #fff;
     }
 
-    .note {
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      opacity: 0.95;
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .contact-note {
+      margin-top: 6px;
       font-size: 12px;
-      opacity: 0.7;
-      margin-top: 12px;
+      opacity: 0.8;
     }
 
-    /* DETAIL BOX */
-    .detail-box {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 12px;
-      background: #020715;
+    .contact-note span {
+      color: #ffcc33;
+    }
+
+    /* SERVICE DETAIL */
+    .service-detail {
+      background: #071125;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    }
+
+    .service-detail h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .service-detail p {
       font-size: 14px;
+      opacity: 0.9;
     }
 
-    .detail-box h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
+    /* RELATED ACCOUNTS */
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 600;
     }
 
-    .detail-box p {
-      margin-top: 4px;
-    }
-
-    /* RELATED PRODUCTS */
-    .related-list {
+    .related-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
-      margin-top: 12px;
     }
 
-    .card {
-      background: #071427;
-      border-radius: 12px;
+    .rel-card {
+      background: #071125;
+      border-radius: 16px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    .rel-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.9);
     }
 
-    .card img {
+    .rel-thumb img {
       width: 100%;
       display: block;
-      height: 140px;
-      object-fit: cover;
     }
 
-    .card-body {
+    .rel-body {
       padding: 10px 12px 12px;
-      font-size: 13px;
     }
 
-    .card-title {
+    .rel-name {
+      font-size: 14px;
       font-weight: 600;
       margin-bottom: 4px;
     }
 
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      opacity: 0.7;
-      margin-bottom: 6px;
+    .rel-meta {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 4px;
     }
 
-    .card-price {
-      color: #ff4ecf;
-      font-weight: 600;
+    .rel-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ff4dd8;
     }
 
-    /* RESPONSIVE */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      padding: 16px 0 24px;
+      opacity: 0.6;
+    }
+
     @media (max-width: 900px) {
-      .product-page {
+      .product-wrapper {
         flex-direction: column;
       }
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+
+      .gallery-card {
+        order: 1;
+      }
+
+      .info-card {
+        order: 2;
       }
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">MIDUNSO SHOP</div>
-    <nav class="nav">
+
+  <!-- THANH TRÊN CÙNG -->
+  <header class="navbar">
+    <div class="logo">MIDUNSO.COM</div>
+    <nav class="nav-links">
       <a href="#top">Trang chủ</a>
-      <a href="#product">Tài khoản</a>
+      <a href="#related">Tài khoản khác</a>
       <a href="#contact">Liên hệ</a>
     </nav>
   </header>
 
-  <main class="wrapper" id="top">
-    <!-- PRODUCT DETAIL -->
-    <section class="product-page" id="product">
-      <!-- LEFT: HÌNH ẢNH -->
-      <div class="left-column">
-        <div class="gallery">
-          <div class="thumbnails">
-            <!-- bạn có thể đổi src thành nhiều ảnh khác nhau -->
-            <div class="thumb active">
-              <img src="images/b.jpg" alt="Ảnh tài khoản 1" />
-            </div>
-            <div class="thumb">
-              <img src="images/b.jpg" alt="Ảnh tài khoản 2" />
-            </div>
-            <div class="thumb">
-              <img src="images/b.jpg" alt="Ảnh tài khoản 3" />
-            </div>
-            <div class="thumb">
-              <img src="images/b.jpg" alt="Ảnh tài khoản 4" />
-            </div>
-          </div>
-
-          <div class="main-image">
-            <img src="images/b.jpg" alt="Ảnh tài khoản chính" />
-            <div class="image-count">
-              <span>📷</span>
-              <span>4 / 4</span>
-            </div>
-          </div>
+  <main class="container" id="top">
+    <!-- KHỐI SẢN PHẨM CHÍNH -->
+    <section class="product-wrapper">
+      <!-- GALLERY ẢNH -->
+      <div class="gallery-card">
+        <div class="gallery-thumbs">
+          <!-- ĐỔI đường dẫn ảnh theo thư mục của bạn, ví dụ images/b.jpg -->
+          <img src="images/b.jpg" alt="Ảnh 1" class="active" onclick="changeImage(this)">
+          <img src="images/b.jpg" alt="Ảnh 2" onclick="changeImage(this)">
+          <img src="images/b.jpg" alt="Ảnh 3" onclick="changeImage(this)">
+          <img src="images/b.jpg" alt="Ảnh 4" onclick="changeImage(this)">
+          <img src="images/b.jpg" alt="Ảnh 5" onclick="changeImage(this)">
         </div>
 
-        <div class="gallery-footer">
-          <span>Ảnh chụp ingame của tài khoản</span>
-          <span>Liên hệ Facebook/Zalo để xem thêm video nếu cần</span>
-        </div>
-
-        <div class="detail-box">
-          <h3>Chi tiết dịch vụ</h3>
-          <p>
-            • Nick lv70 full16, 2k5 lượng, 1 tỷ3 yên<br />
-            • Đồ đạc như hình, không login phá đồ<br />
-            • Bàn giao qua trung gian hoặc trade trực tiếp theo thỏa thuận
-          </p>
+        <div class="gallery-main">
+          <img id="mainImage" src="images/b.jpg" alt="Tài khoản game">
+          <div class="gallery-count">
+            <span>💬</span>
+            <span>6 / 11</span>
+          </div>
         </div>
       </div>
 
-      <!-- RIGHT: THÔNG TIN + GIÁ -->
-      <aside class="right-column">
-        <h1 class="product-name">NICK TRƯỜNG HỌC NINJA</h1>
-        <p class="product-code">Mã số: #52636</p>
+      <!-- THÔNG TIN TÀI KHOẢN -->
+      <aside class="info-card">
+        <div>
+          <h1 class="product-title">NICK TRƯỜNG HỌC NINJA</h1>
+          <p class="product-id">Mã số: #52636</p>
+        </div>
 
-        <div class="info-block">
-          <div class="info-row">
-            <span>Cấp độ</span>
-            <span>70</span>
-          </div>
-          <div class="info-row">
-            <span>Server</span>
-            <span>THNS</span>
-          </div>
-          <div class="info-row">
-            <span>Class</span>
-            <span>Kiếm</span>
-          </div>
-          <div class="info-row">
-            <span>TTGT</span>
-            <span>Không</span>
+        <div>
+          <div class="info-section-title">Thông tin acc</div>
+          <div class="info-table">
+            <div class="info-label">Cấp độ</div>
+            <div class="info-value">70</div>
+
+            <div class="info-label">Server</div>
+            <div class="info-value">THNS</div>
+
+            <div class="info-label">Class</div>
+            <div class="info-value">Kiếm</div>
+
+            <div class="info-label">TTGT</div>
+            <div class="info-value">Không</div>
+
+            <div class="info-label">Vật phẩm</div>
+            <div class="info-value">Full +16, pet ngon, đồ sự kiện...</div>
+
+            <div class="info-label">Ghi chú</div>
+            <div class="info-value">Acc sạch, chưa bị phạt, chơi ổn định.</div>
           </div>
         </div>
 
-        <div class="price-box">
-          <div class="price-main">399,000 ATM</div>
-          <div class="price-sub">498,750 CARD</div>
-          <div class="price-note">Rẻ vô đối, giá tốt nhất thị trường</div>
-        </div>
+        <div>
+          <div class="info-section-title">Giá bán</div>
+          <div class="price-box">
+            <div class="price-main">399,000 ATM</div>
+            <div class="price-sub">498,750 CARD</div>
+            <div class="price-note">Rẻ vô đối, giá tốt nhất thị trường</div>
+          </div>
 
-        <div class="buttons">
-          <button class="btn btn-primary">Mua ngay</button>
-          <button class="btn btn-secondary">Trả góp</button>
-        </div>
+          <div class="btn-row">
+            <!-- THAY link Zalo / Facebook của bạn ở đây -->
+            <button class="btn btn-primary" onclick="window.open('https://zalo.me','_blank')">
+              Mua ngay
+            </button>
+            <button class="btn btn-secondary" onclick="window.open('https://facebook.com','_blank')">
+              Trả góp
+            </button>
+          </div>
 
-        <p class="note">
-          Sau khi bấm MUA, vui lòng inbox trực tiếp qua Zalo/Facebook để chốt đơn.
-          Tài khoản bàn giao trong vòng 5–10 phút sau khi thanh toán.
-        </p>
+          <p class="contact-note" id="contact">
+            Sau khi bấm <span>Mua ngay / Trả góp</span>, bạn sẽ được chuyển sang Zalo/Facebook để trao đổi trực tiếp.
+          </p>
+        </div>
       </aside>
     </section>
 
-    <!-- RELATED -->
-    <section style="margin-top: 32px;">
+    <!-- CHI TIẾT DỊCH VỤ -->
+    <section class="service-detail">
+      <h3>Chi tiết dịch vụ</h3>
+      <p>
+        Kiếm lv70 full16, 2k5 lượng, 1ty3 yên. Acc chơi ổn định, đăng nhập được trên mọi thiết bị.
+        Bảo hành đăng nhập 7 ngày, hỗ trợ đổi thông tin đầy đủ.
+      </p>
+    </section>
+
+    <!-- TÀI KHOẢN LIÊN QUAN -->
+    <section id="related">
       <h2 class="section-title">Tài khoản liên quan</h2>
-      <div class="related-list">
-        <div class="card">
-          <img src="images/b.jpg" alt="Nick liên quan 1" />
-          <div class="card-body">
-            <p class="card-title">Nick Ninja lv65 – Kiếm</p>
-            <div class="card-meta">
-              <span>Server: 1</span>
-              <span>Không TTGT</span>
-            </div>
-            <div class="card-price">299,000đ</div>
+      <div class="related-grid">
+        <div class="rel-card">
+          <div class="rel-thumb">
+            <img src="images/b.jpg" alt="Nick 1">
+          </div>
+          <div class="rel-body">
+            <div class="rel-name">Nick Ninja lv65 – Kiếm</div>
+            <div class="rel-meta">Server: NRO1 • Full 12</div>
+            <div class="rel-price">199,000 ATM</div>
           </div>
         </div>
 
-        <div class="card">
-          <img src="images/b.jpg" alt="Nick liên quan 2" />
-          <div class="card-body">
-            <p class="card-title">Nick Ninja lv70 – Phi tiêu</p>
-            <div class="card-meta">
-              <span>Server: 5</span>
-              <span>Full16</span>
-            </div>
-            <div class="card-price">450,000đ</div>
+        <div class="rel-card">
+          <div class="rel-thumb">
+            <img src="images/b.jpg" alt="Nick 2">
+          </div>
+          <div class="rel-body">
+            <div class="rel-name">Nick Học Viện – Kunai</div>
+            <div class="rel-meta">Server: THNS • Đồ sự kiện</div>
+            <div class="rel-price">249,000 ATM</div>
           </div>
         </div>
 
-        <div class="card">
-          <img src="images/b.jpg" alt="Nick liên quan 3" />
-          <div class="card-body">
-            <p class="card-title">Nick học viện – Đồ thời trang</p>
-            <div class="card-meta">
-              <span>Server: 2</span>
-              <span>Có TTGT</span>
-            </div>
-            <div class="card-price">520,000đ</div>
+        <div class="rel-card">
+          <div class="rel-thumb">
+            <img src="images/b.jpg" alt="Nick 3">
+          </div>
+          <div class="rel-body">
+            <div class="rel-name">Nick Sưu Tầm – Sát thương cao</div>
+            <div class="rel-meta">Server: THNS • Full 14</div>
+            <div class="rel-price">329,000 ATM</div>
+          </div>
+        </div>
+
+        <div class="rel-card">
+          <div class="rel-thumb">
+            <img src="images/b.jpg" alt="Nick 4">
+          </div>
+          <div class="rel-body">
+            <div class="rel-name">Nick Giá Rẻ Cho Tân Thủ</div>
+            <div class="rel-meta">Server: bất kỳ</div>
+            <div class="rel-price">99,000 ATM</div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- CONTACT -->
-    <section id="contact" style="margin-top: 40px;">
-      <h2 class="section-title">Liên hệ mua nick</h2>
-      <p style="opacity: 0.8; font-size: 14px;">
-        💬 Zalo: 0xxx xxx xxx<br />
-        📘 Facebook: link Facebook của bạn<br />
-        💳 Ngân hàng / Momo: ghi rõ thông tin để khách chuyển khoản.
-      </p>
-    </section>
   </main>
+
+  <footer>
+    © 2025 MiduNso - Shop buôn bán tài khoản game. Liên hệ Zalo/Facebook để được tư vấn nhanh nhất.
+  </footer>
+
+  <!-- JS nhỏ để đổi ảnh khi bấm thumbnail -->
+  <script>
+    function changeImage(el) {
+      const main = document.getElementById('mainImage');
+      main.src = el.src;
+
+      document
+        .querySelectorAll('.gallery-thumbs img')
+        .forEach(img => img.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
 </body>
 </html>
