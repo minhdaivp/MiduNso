@@ -1,325 +1,489 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <title>Nick Trường Học Ninja #52636</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- CSS đơn giản để mọi thứ đẹp hơn -->
+  <meta charset="utf-8" />
+  <title>Shop Bán Tài Khoản Ninja</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #050816;
-      color: #f5f5f5;
+      color: #ffffff;
+      line-height: 1.5;
     }
 
-    .page {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    .header {
+      background: #000000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #f5b300;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .nav a:hover {
+      color: #f5b300;
+    }
+
+    /* MAIN WRAPPER */
+    .wrapper {
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 32px auto 64px;
       padding: 0 16px;
     }
 
-    .product-layout {
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 24px 0 12px;
+    }
+
+    /* PRODUCT LAYOUT */
+    .product-page {
       display: flex;
-      gap: 24px;
       flex-wrap: wrap;
+      gap: 24px;
     }
 
-    /* --- GALLERY BÊN TRÁI --- */
-    .gallery-wrapper {
-      background: #0b1220;
-      border-radius: 16px;
-      padding: 16px;
+    .left-column,
+    .right-column {
+      background: #071427;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .left-column {
+      flex: 2;
+      min-width: 320px;
+    }
+
+    .right-column {
+      flex: 1.5;
+      min-width: 280px;
+    }
+
+    /* GALLERY */
+    .gallery {
       display: flex;
-      gap: 12px;
-      flex: 1 1 55%;
-      min-width: 260px;
+      gap: 16px;
     }
 
-    .thumb-list {
+    .thumbnails {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      max-height: 420px;
-      overflow-y: auto;
+      width: 96px;
     }
 
-    .thumb-list img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
+    .thumb {
       border-radius: 8px;
+      overflow: hidden;
       cursor: pointer;
-      opacity: 0.7;
       border: 2px solid transparent;
-      transition: 0.15s;
     }
 
-    .thumb-list img.active,
-    .thumb-list img:hover {
-      opacity: 1;
-      border-color: #facc15;
+    .thumb img {
+      display: block;
+      width: 100%;
+    }
+
+    .thumb.active {
+      border-color: #f5b300;
     }
 
     .main-image {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #020617;
       border-radius: 12px;
-      padding: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
     }
 
     .main-image img {
+      display: block;
       width: 100%;
-      max-height: 420px;
-      object-fit: contain;
-      border-radius: 8px;
+      height: auto;
     }
 
-    /* --- THÔNG TIN ACC BÊN PHẢI --- */
-    .info-card {
-      flex: 1 1 40%;
-      min-width: 260px;
-      background: #020617;
-      border-radius: 16px;
-      padding: 20px 20px 24px;
+    .image-count {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      align-items: center;
+      gap: 6px;
     }
 
-    .info-card h1 {
-      font-size: 24px;
-      color: #facc15;
+    .image-count span {
+      opacity: 0.8;
     }
 
-    .acc-id {
+    .gallery-footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* PRODUCT INFO RIGHT */
+    .product-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      color: #f5b300;
+    }
+
+    .product-code {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .info-block {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+      margin-top: 8px;
       font-size: 14px;
-      color: #9ca3af;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 8px;
     }
 
-    .section-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #1f2937;
-      padding-bottom: 4px;
-    }
-
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    .info-table td {
-      padding: 4px 0;
-    }
-
-    .info-table td:first-child {
-      color: #9ca3af;
-      width: 90px;
+    .info-row span:first-child {
+      opacity: 0.7;
     }
 
     .price-box {
-      background: #020617;
+      margin: 18px 0;
+      background: #020715;
       border-radius: 12px;
       padding: 16px;
-      border: 1px solid #374151;
       text-align: center;
     }
 
     .price-main {
       font-size: 20px;
-      font-weight: bold;
-      color: #fb277f;
+      font-weight: 700;
+      color: #ff4ecf;
+      margin-bottom: 4px;
     }
 
     .price-sub {
       font-size: 16px;
-      font-weight: bold;
-      color: #e879f9;
-      margin-top: 4px;
+      color: #ff79ff;
+      margin-bottom: 6px;
     }
 
     .price-note {
-      margin-top: 8px;
       font-size: 13px;
-      color: #d1d5db;
+      opacity: 0.8;
     }
 
-    .btn-row {
+    .buttons {
       display: flex;
       gap: 12px;
-      margin-top: 12px;
-      flex-wrap: wrap;
+      margin-top: 16px;
     }
 
     .btn {
       flex: 1;
-      min-width: 120px;
-      padding: 10px 14px;
+      padding: 12px 0;
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 14px;
-      text-align: center;
-      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .btn-primary {
-      background: #fbbf24;
-      color: #111827;
+      background: #f5b300;
+      color: #000;
     }
 
     .btn-secondary {
       background: transparent;
-      color: #fbbf24;
-      border: 1px solid #fbbf24;
+      border: 1px solid #f5b300;
+      color: #f5b300;
     }
 
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    /* --- MÔ TẢ DỊCH VỤ & LIÊN QUAN --- */
-    .service-detail,
-    .related-accounts {
-      margin-top: 24px;
-      background: #020617;
-      border-radius: 16px;
-      padding: 16px 20px 20px;
-    }
-
-    .service-detail p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #e5e7eb;
-    }
-
-    .related-grid {
+    .note {
+      font-size: 12px;
+      opacity: 0.7;
       margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
     }
 
-    .related-item {
-      background: #0b1220;
+    /* DETAIL BOX */
+    .detail-box {
+      margin-top: 18px;
+      padding: 16px;
       border-radius: 12px;
-      padding: 10px;
+      background: #020715;
+      font-size: 14px;
+    }
+
+    .detail-box h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .detail-box p {
+      margin-top: 4px;
+    }
+
+    /* RELATED PRODUCTS */
+    .related-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .card {
+      background: #071427;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 10px 12px 12px;
       font-size: 13px;
     }
 
-    .related-item img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 6px;
-    }
-
-    .related-item-title {
+    .card-title {
       font-weight: 600;
       margin-bottom: 4px;
     }
 
-    @media (max-width: 768px) {
-      .page { margin-top: 16px; }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .card-price {
+      color: #ff4ecf;
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .product-page {
+        flex-direction: column;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="product-layout">
-      <!-- GALLERY BÊN TRÁI -->
-      <div class="gallery-wrapper">
-        <div class="thumb-list">
-          <!-- Thay link ảnh theo acc của bạn -->
-          <img src="images/nick1-1.jpg" class="active" data-large="images/nick1-1.jpg" alt="Hình 1">
-          <img src="images/nick1-2.jpg" data-large="images/nick1-2.jpg" alt="Hình 2">
-          <img src="images/nick1-3.jpg" data-large="images/nick1-3.jpg" alt="Hình 3">
-          <img src="images/nick1-4.jpg" data-large="images/nick1-4.jpg" alt="Hình 4">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">MIDUNSO SHOP</div>
+    <nav class="nav">
+      <a href="#top">Trang chủ</a>
+      <a href="#product">Tài khoản</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+  </header>
+
+  <main class="wrapper" id="top">
+    <!-- PRODUCT DETAIL -->
+    <section class="product-page" id="product">
+      <!-- LEFT: HÌNH ẢNH -->
+      <div class="left-column">
+        <div class="gallery">
+          <div class="thumbnails">
+            <!-- bạn có thể đổi src thành nhiều ảnh khác nhau -->
+            <div class="thumb active">
+              <img src="images/b.jpg" alt="Ảnh tài khoản 1" />
+            </div>
+            <div class="thumb">
+              <img src="images/b.jpg" alt="Ảnh tài khoản 2" />
+            </div>
+            <div class="thumb">
+              <img src="images/b.jpg" alt="Ảnh tài khoản 3" />
+            </div>
+            <div class="thumb">
+              <img src="images/b.jpg" alt="Ảnh tài khoản 4" />
+            </div>
+          </div>
+
+          <div class="main-image">
+            <img src="images/b.jpg" alt="Ảnh tài khoản chính" />
+            <div class="image-count">
+              <span>📷</span>
+              <span>4 / 4</span>
+            </div>
+          </div>
         </div>
 
-        <div class="main-image">
-          <img id="mainImage" src="images/nick1-1.jpg" alt="Ảnh chính nick game">
+        <div class="gallery-footer">
+          <span>Ảnh chụp ingame của tài khoản</span>
+          <span>Liên hệ Facebook/Zalo để xem thêm video nếu cần</span>
+        </div>
+
+        <div class="detail-box">
+          <h3>Chi tiết dịch vụ</h3>
+          <p>
+            • Nick lv70 full16, 2k5 lượng, 1 tỷ3 yên<br />
+            • Đồ đạc như hình, không login phá đồ<br />
+            • Bàn giao qua trung gian hoặc trade trực tiếp theo thỏa thuận
+          </p>
         </div>
       </div>
 
-      <!-- THÔNG TIN ACC BÊN PHẢI -->
-      <div class="info-card">
-        <div>
-          <h1>NICK TRƯỜNG HỌC NINJA</h1>
-          <div class="acc-id">Mã số: #52636</div>
-        </div>
+      <!-- RIGHT: THÔNG TIN + GIÁ -->
+      <aside class="right-column">
+        <h1 class="product-name">NICK TRƯỜNG HỌC NINJA</h1>
+        <p class="product-code">Mã số: #52636</p>
 
-        <div>
-          <div class="section-title">Thông tin acc</div>
-          <table class="info-table">
-            <tr><td>Cấp độ</td><td>70</td></tr>
-            <tr><td>Server</td><td>THNS</td></tr>
-            <tr><td>Class</td><td>Kiếm</td></tr>
-            <tr><td>TTGT</td><td>Không</td></tr>
-          </table>
+        <div class="info-block">
+          <div class="info-row">
+            <span>Cấp độ</span>
+            <span>70</span>
+          </div>
+          <div class="info-row">
+            <span>Server</span>
+            <span>THNS</span>
+          </div>
+          <div class="info-row">
+            <span>Class</span>
+            <span>Kiếm</span>
+          </div>
+          <div class="info-row">
+            <span>TTGT</span>
+            <span>Không</span>
+          </div>
         </div>
 
         <div class="price-box">
           <div class="price-main">399,000 ATM</div>
           <div class="price-sub">498,750 CARD</div>
           <div class="price-note">Rẻ vô đối, giá tốt nhất thị trường</div>
+        </div>
 
-          <div class="btn-row">
-            <!-- Thay href = link Zalo / Facebook / web thanh toán của bạn -->
-            <a class="btn btn-primary" href="https://zalo.me/" target="_blank">Mua ngay</a>
-            <a class="btn btn-secondary" href="https://facebook.com/" target="_blank">Chat tư vấn</a>
+        <div class="buttons">
+          <button class="btn btn-primary">Mua ngay</button>
+          <button class="btn btn-secondary">Trả góp</button>
+        </div>
+
+        <p class="note">
+          Sau khi bấm MUA, vui lòng inbox trực tiếp qua Zalo/Facebook để chốt đơn.
+          Tài khoản bàn giao trong vòng 5–10 phút sau khi thanh toán.
+        </p>
+      </aside>
+    </section>
+
+    <!-- RELATED -->
+    <section style="margin-top: 32px;">
+      <h2 class="section-title">Tài khoản liên quan</h2>
+      <div class="related-list">
+        <div class="card">
+          <img src="images/b.jpg" alt="Nick liên quan 1" />
+          <div class="card-body">
+            <p class="card-title">Nick Ninja lv65 – Kiếm</p>
+            <div class="card-meta">
+              <span>Server: 1</span>
+              <span>Không TTGT</span>
+            </div>
+            <div class="card-price">299,000đ</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/b.jpg" alt="Nick liên quan 2" />
+          <div class="card-body">
+            <p class="card-title">Nick Ninja lv70 – Phi tiêu</p>
+            <div class="card-meta">
+              <span>Server: 5</span>
+              <span>Full16</span>
+            </div>
+            <div class="card-price">450,000đ</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/b.jpg" alt="Nick liên quan 3" />
+          <div class="card-body">
+            <p class="card-title">Nick học viện – Đồ thời trang</p>
+            <div class="card-meta">
+              <span>Server: 2</span>
+              <span>Có TTGT</span>
+            </div>
+            <div class="card-price">520,000đ</div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- MÔ TẢ DỊCH VỤ -->
-    <div class="service-detail">
-      <div class="section-title">Chi tiết dịch vụ</div>
-      <p>
-        Kiếm lv70 full16, 2k5 lượng, 1ty3 yên.  
-        Tài khoản sạch, chưa bị phốt, đăng nhập ổn định.  
-        Bàn giao full thông tin sau khi thanh toán.
+    <!-- CONTACT -->
+    <section id="contact" style="margin-top: 40px;">
+      <h2 class="section-title">Liên hệ mua nick</h2>
+      <p style="opacity: 0.8; font-size: 14px;">
+        💬 Zalo: 0xxx xxx xxx<br />
+        📘 Facebook: link Facebook của bạn<br />
+        💳 Ngân hàng / Momo: ghi rõ thông tin để khách chuyển khoản.
       </p>
-    </div>
-
-    <!-- TÀI KHOẢN LIÊN QUAN (demo) -->
-    <div class="related-accounts">
-      <div class="section-title">Tài khoản liên quan</div>
-      <div class="related-grid">
-        <div class="related-item">
-          <img src="images/nick2-thumb.jpg" alt="Nick 2">
-          <div class="related-item-title">Nick Ninja 65 – Kiếm</div>
-          <div>Giá: 250,000 ATM</div>
-        </div>
-        <div class="related-item">
-          <img src="images/nick3-thumb.jpg" alt="Nick 3">
-          <div class="related-item-title">Nick Ninja 75 – Phi Tiêu</div>
-          <div>Giá: 520,000 ATM</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JS đơn giản để đổi ảnh khi bấm thumbnail -->
-  <script>
-    const mainImage = document.getElementById('mainImage');
-    const thumbs = document.querySelectorAll('.thumb-list img');
-
-    thumbs.forEach(img => {
-      img.addEventListener('click', () => {
-        thumbs.forEach(i => i.classList.remove('active'));
-        img.classList.add('active');
-        mainImage.src = img.dataset.large || img.src;
-      });
-    });
-  </script>
+    </section>
+  </main>
 </body>
 </html>
